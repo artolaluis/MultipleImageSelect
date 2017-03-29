@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.darsh.multipleimageselect.activities.AlbumSelectActivity;
+import com.darsh.multipleimageselect.activities.ImageSelectActivity;
 import com.darsh.multipleimageselect.helpers.Constants;
 import com.darsh.multipleimageselect.models.Image;
 
@@ -23,9 +26,25 @@ public class MainActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.text_view);
 
-        Intent intent = new Intent(MainActivity.this, AlbumSelectActivity.class);
-        intent.putExtra(Constants.INTENT_EXTRA_LIMIT, 3);
-        startActivityForResult(intent, Constants.REQUEST_CODE);
+        Button openAlbums = (Button)findViewById(R.id.open_albums);
+        openAlbums.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AlbumSelectActivity.class);
+                intent.putExtra(Constants.INTENT_EXTRA_LIMIT, 3);
+                startActivityForResult(intent, Constants.REQUEST_CODE);
+            }
+        });
+
+        Button openImages = (Button)findViewById(R.id.open_images);
+        openImages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ImageSelectActivity.class);
+                intent.putExtra(Constants.INTENT_EXTRA_LIMIT, 3);
+                startActivityForResult(intent, Constants.REQUEST_CODE);
+            }
+        });
     }
 
     @Override

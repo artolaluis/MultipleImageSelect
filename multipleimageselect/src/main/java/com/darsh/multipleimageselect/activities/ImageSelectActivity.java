@@ -344,8 +344,19 @@ public class ImageSelectActivity extends HelperActivity {
                 }
             }
 
-            Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection,
-                    MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " =?", new String[]{ album }, MediaStore.Images.Media.DATE_ADDED);
+            String selection = null;
+            String[] selectionArguments = null;
+            if (album != null) {
+                selection = MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " = ?";
+                selectionArguments = new String[]{ album };
+            }
+            Cursor cursor = getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArguments,
+                MediaStore.Images.Media.DATE_ADDED
+            );
             if (cursor == null) {
                 sendMessage(Constants.ERROR);
                 return;
