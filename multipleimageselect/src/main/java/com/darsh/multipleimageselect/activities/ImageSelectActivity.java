@@ -81,6 +81,7 @@ public class ImageSelectActivity extends HelperActivity {
             finish();
         }
         album = intent.getStringExtra(Constants.INTENT_EXTRA_ALBUM);
+        Constants.limit = intent.getIntExtra(Constants.INTENT_EXTRA_LIMIT, Constants.DEFAULT_LIMIT);
 
         errorDisplay = (TextView) findViewById(R.id.text_view_error);
         errorDisplay.setVisibility(View.INVISIBLE);
